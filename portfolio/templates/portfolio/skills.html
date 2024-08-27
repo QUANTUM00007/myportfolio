@@ -1,0 +1,20 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+    <div class="skills-section">
+        <h1>My Skills</h1>
+        {% for category in categories %}
+            <h2>{{ category.name }}</h2>
+            <ul>
+                {% for skill in category.skills.all %}
+                    <li>
+                        {% if skill.icon %}
+                            <img src="{{ skill.icon.url }}" alt="{{ skill.name }}" style="width: 50px; height: 50px;">
+                        {% endif %}
+                        {{ skill.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+    </div>
+{% endblock %}

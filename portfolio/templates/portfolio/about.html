@@ -1,0 +1,38 @@
+{% extends 'portfolio/base.html' %}
+
+{% block content %}
+<section class="contact">
+    <h1>About Me</h1>
+    <div class="about-section">
+        <h1>{{ about.title }}</h1>
+        <!-- Display the image -->
+        {% if about.image %}
+            <img src="{{ about.image.url }}" alt="{{ about.title }}" class="about-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+        <p>{{ about.content }}</p>
+        <!-- Display the resume download link -->
+        {% if about.resume %}
+            <a href="{{ about.resume.url }}" download class="btn-download">Download Resume</a>
+        {% else %}
+            <p>No resume available</p>
+        {% endif %}
+    </div>
+    <!-- Social Media Links -->
+    <div class="social-links">
+        <a href="https://github.com/QUANTUM00007" target="_blank" class="social-link">
+            <i class="fab fa-github social-icon"></i> GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/mohdarslan626" target="_blank" class="social-link">
+            <i class="fab fa-linkedin social-icon"></i> LinkedIn
+        </a>
+        <a href="https://twitter.com/near_gift" target="_blank" class="social-link">
+            <i class="fab fa-twitter social-icon"></i> Twitter
+        </a>
+        <a href="https://www.instagram.com/yourusername" target="_blank" class="social-link">
+            <i class="fab fa-instagram social-icon"></i> Instagram
+        </a>
+    </div>
+</section>
+{% endblock %}

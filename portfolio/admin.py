@@ -1,3 +1,9 @@
 from django.contrib import admin
+from . models import Skill, SkillCategory, Project, Contact, About
 
-# Register your models here.
+
+admin.site.register(Skill)
+admin.site.register(Project)
+admin.site.register(Contact)
+admin.site.register(SkillCategory)
+admin.site.register(About)
