@@ -1,10 +1,24 @@
 {% extends 'portfolio/base.html' %}
 
-{% block title %}Projects{% endblock %}
+{% block title %}My Projects{% endblock %}
 
 {% block content %}
-<section class="projects">
-    <h2>My Projects</h2>
-    <p>Details about your projects.</p>
+<section class="projects-section">
+    <h1>My Projects</h1>
+    <div class="projects-container">
+        {% for project in projects %}
+            <div class="project-card">
+                <a href="{% url 'project_detail' project.pk %}">
+                    <img src="{{ project.image.url }}" alt="{{ project.title }}" class="project-image">
+                    <div class="project-info">
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <p class="project-description">{{ project.short_description }}</p>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <p>No projects available.</p>
+        {% endfor %}
+    </div>
 </section>
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'portfolio/base.html' %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<section class="project-detail">
+    <h1>{{ project.title }}</h1>
+    <p>{{ project.description }}</p>
+
+    <div class="project-images">
+        {% for image in images %}
+            <div class="project-image">
+                <img src="{{ image.image.url }}" alt="{{ image.caption }}">
+                {% if image.caption %}
+                    <p>{{ image.caption }}</p>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No images available.</p>
+        {% endfor %}
+    </div>
+
+    <a href="{{ project.link }}" target="_blank">View on GitHub</a>
+</section>
+{% endblock %}

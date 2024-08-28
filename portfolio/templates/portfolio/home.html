@@ -1,10 +1,68 @@
 {% extends 'portfolio/base.html' %}
 
-{% block title %}Home | MyPortfolio{% endblock %}
+{% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="home">
-    <h1>Welcome to MyPortfolio</h1>
-    <p>Your one-stop destination to showcase your skills, projects, and more.</p>
-</div>
+<section class="hero">
+    <div class="hero-content">
+        <h1>Welcome to My Portfolio</h1>
+        <h2>I'm Mohd Arslan</h2>
+        <h3>Python Developer</h3>
+        <a href="#my-work" class="btn-primary">See My Work</a>
+    </div>
+</section>
+
+<section id="my-work" class="my-work">
+    <h2>My Work</h2>
+    <div class="projects-grid">
+        {% for project in projects %}
+            <div class="project-card">
+                <img src="{{ project.image.url }}" alt="{{ project.title }}">
+                <h3>{{ project.title }}</h3>
+                <a href="{% url 'project_detail' project.id %}">View Details</a>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="courses">
+    <h2>Courses</h2>
+    <div class="course-list">
+        {% for course in courses %}
+            <div class="course-item">
+                <h3>{{ course.title }}</h3>
+                <p>{{ course.description }}</p>
+                {% if course.certificate_image %}
+                    <img src="{{ course.certificate_image.url }}" alt="{{ course.title }}">
+                {% endif %}
+                {% if course.link %}
+                    <a href="{{ course.link }}" target="_blank">Learn More</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No courses available.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="certificates">
+    <h2>Certificates</h2>
+    <div class="certificate-list">
+        {% for certificate in certificates %}
+            <div class="certificate-item">
+                <h3>{{ certificate.title }}</h3>
+                <p>Issued by: {{ certificate.issued_by }}</p>
+                <p>Date: {{ certificate.date_issued }}</p>
+                {% if certificate.image %}
+                    <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}">
+                {% endif %}
+                {% if certificate.link %}
+                    <a href="{{ certificate.link }}" target="_blank">View Certificate</a>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>No certificates available.</p>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}
