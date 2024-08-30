@@ -1,5 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Skill, About, Project, SkillCategory, Course, Certificate
+from django.core.mail import send_mail
+from django.contrib import messages
+from .forms import ContactForm
+from .utils import send_telegram_message  # Import the function
+
 
 def home_view(request):
     projects = Project.objects.all()
@@ -14,8 +19,55 @@ def about_view(request):
     return render(request, 'portfolio/about.html', {"about": about})
 
 
+# def contact_view(request):
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#         if form.is_valid():
+#             name = form.cleaned_data['name']
+#             email = form.cleaned_data['email']
+#             message = form.cleaned_data['message']
+
+#             # Attempt to send the email and handle any exceptions
+#             try:
+#                 send_mail(
+#                     f'Contact Form Submission from {name}',
+#                     message,
+#                     email,
+#                     ['mohdarslan626@gmail.com'],
+#                     fail_silently=False,
+#                 )
+#                 messages.success(request, 'Thank you for your message. We will get back to you soon!')
+#             except Exception as e:
+#                 messages.error(request, f'An error occurred while sending the message: {e}')
+#                 return redirect('contact')
+            
+#             return redirect('contact')
+#     else:
+#         form = ContactForm()
+
+#     return render(request, 'portfolio/contact.html', {'form': form})
+
+
 def contact_view(request):
-    return render(request, 'portfolio/contact.html')
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            message = form.cleaned_data['message']
+
+            try:
+                send_telegram_message(name, email, message)
+                messages.success(request, 'Thank you for your message. We will get back to you soon!')
+            except Exception as e:
+                messages.error(request, f'An error occurred while sending the message: {e}')
+                return redirect('contact')
+
+            return redirect('contact')
+    else:
+        form = ContactForm()
+
+    return render(request, 'portfolio/contact.html', {'form': form})
 
 
 def skill_view(request):

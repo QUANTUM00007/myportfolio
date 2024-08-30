@@ -6,9 +6,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Portfolio{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+    <meta name="description" content="Welcome to My Portfolio. Explore my skills, projects, and contact me for more information.">
+    <meta name="keywords" content="portfolio, web developer, projects, skills, contact">
+    <meta name="author" content="Mohd Arslan">
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 <body>
@@ -32,10 +35,18 @@
         </nav>
     </header>
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% endblock %}
     </main>
     <footer>
-        <p>&copy; {{ current_year }} My Portfolio</p>
+        <p>&copy; {{ current_year }} My Portfolio. All rights reserved.</p>
     </footer>
     <script src="{% static 'portfolio/js/main.js' %}"></script>
     {% block extra_scripts %}{% endblock %}

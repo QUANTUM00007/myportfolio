@@ -5,27 +5,47 @@
 {% block content %}
 <section class="contact">
     <h2>Contact Me</h2>
-    
+
+    <!-- Display Django Messages -->
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <!-- Contact Information -->
     <div class="contact-info">
-        <p><strong>Email:</strong> <a href="mailto:mohdarslan626@gamil.com">mohdarslan626@gmail.com</a></p>
-        <p><strong>Phone:</strong> <a href="callto:+917251092817">+91 7251092817</a></p>
+        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> <a href="mailto:mohdarslan626@gmail.com">mohdarslan626@gmail.com</a></p>
+        <p><i class="fas fa-phone"></i> <strong>Phone:</strong> <a href="callto:+917251092817">+91 7251092817</a></p>
     </div>
-    
+
     <!-- Social Media Links -->
     <div class="social-links">
         <a href="https://github.com/QUANTUM00007" target="_blank" class="social-link">
-            <i class="fab fa-github social-icon"></i> GitHub
+            <i class="fab fa-github"></i> GitHub
         </a>
         <a href="https://www.linkedin.com/in/mohdarslan626" target="_blank" class="social-link">
-            <i class="fab fa-linkedin social-icon"></i> LinkedIn
+            <i class="fab fa-linkedin"></i> LinkedIn
         </a>
         <a href="https://twitter.com/near_gift" target="_blank" class="social-link">
-            <i class="fab fa-twitter social-icon"></i> Twitter
+            <i class="fab fa-twitter"></i> Twitter
         </a>
         <a href="https://www.instagram.com/mohdarslan__" target="_blank" class="social-link">
-            <i class="fab fa-instagram social-icon"></i> Instagram
+            <i class="fab fa-instagram"></i> Instagram
         </a>
+    </div>
+
+    <!-- Contact Form -->
+    <div class="contact-form">
+        <form action="{% url 'contact' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn-primary">Send Message</button>
+        </form>
     </div>
 </section>
 {% endblock %}
