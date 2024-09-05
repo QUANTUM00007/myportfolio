@@ -67,7 +67,7 @@ class Certificate(models.Model):
     title = models.CharField(max_length=200)
     issued_by = models.CharField(max_length=200)
     date_issued = models.DateField()
-    image = models.ImageField(upload_to='certificates/', blank=True, null=True)
+    pdf = models.FileField(upload_to='certificates/pdf', blank=True, null=True)
     link = models.URLField(blank=True, null=True)  # Optional: Link to certificate
 
     def __str__(self):

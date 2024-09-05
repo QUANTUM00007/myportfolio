@@ -53,11 +53,13 @@
                 <h3>{{ certificate.title }}</h3>
                 <p>Issued by: {{ certificate.issued_by }}</p>
                 <p>Date: {{ certificate.date_issued }}</p>
-                {% if certificate.image %}
-                    <img src="{{ certificate.image.url }}" alt="{{ certificate.title }}">
+                {% if certificate.pdf %}
+                    <a href="{{ certificate.pdf.url }}" target="_blank">View Certificate (PDF)</a>
+                {% else %}
+                    <p>No PDF available</p>
                 {% endif %}
                 {% if certificate.link %}
-                    <a href="{{ certificate.link }}" target="_blank">View Certificate</a>
+                    <a href="{{ certificate.link }}" target="_blank">External Link</a>
                 {% endif %}
             </div>
         {% empty %}

@@ -737,3 +737,60 @@ footer .social-icon {
         font-size: 0.9rem;
     }
 }
+
+/* Certificates Section */
+.certificates {
+    padding: 4rem 2rem;
+    background-color: rgba(8, 8, 8, 0.95);
+    text-align: center;
+    margin-top: 3rem; /* Adjusted margin for better spacing */
+}
+
+.certificates h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #333; /* Dark text color for better readability */
+}
+
+.certificate-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem; /* Space between items */
+    justify-content: center; /* Center the items */
+}
+
+.certificate-item {
+    background-color: #ffffff; /* White background for each item */
+    border: 1px solid #ddd; /* Light border for separation */
+    padding: 1.5rem;
+    border-radius: 8px;
+    width: 300px; /* Fixed width for consistency */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.certificate-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+.certificate-item h3 {
+    margin-top: 0;
+    color: #0056b3; /* Color for the title */
+}
+
+.certificate-item p {
+    margin: 0.5rem 0;
+    color: #666; /* Slightly lighter text color */
+}
+
+.certificate-item a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #007bff; /* Blue color for links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.certificate-item a:hover {
+    text-decoration: underline;
+}
